@@ -35,7 +35,6 @@ class NCARCluster(_base_class):
     Returns
     -------
     cluster : object
-         This functions returns:
 
          - PBSCluster, if the host on Cheyenne cluster
          - SLURMCluster, if the host is on DAV cluster
