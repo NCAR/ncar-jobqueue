@@ -2,9 +2,8 @@
 import dask_jobqueue
 import socket
 import re
-from dask_jobqueue.core import JobQueueCluster
 
-class NCARCluster(JobQueueCluster):
+class NCARCluster(object):
     def __init__(self, **kwargs):
         self._host = self._get_host()
 
