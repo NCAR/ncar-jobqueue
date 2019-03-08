@@ -8,7 +8,7 @@ def _get_base_class():
     """Function to determine which base class to use.
     """
     filter1 = r'^cheyenne'
-    filter2 = r'^r\d'
+    filter2 = r'r\d(i)\d(n)\d*'
     cheyenne_filter = re.compile('|'.join([filter1, filter2]))
     dav_filter = re.compile(r'^casper')
     hostname = socket.gethostname()
