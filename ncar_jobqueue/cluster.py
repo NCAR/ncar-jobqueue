@@ -46,9 +46,9 @@ class NCARCluster(_base_class):
     -------
     cluster : object
 
-         - PBSCluster, if the host on Cheyenne cluster or Hobart cluster
-         - SLURMCluster, if the host is on Casper cluster
-         - Throws exception, if the host is neither on Cheyenne, Hobart nor Casper clusters
+         - PBSCluster, if the host on Cheyenne cluster or Hobart cluster.
+         - SLURMCluster, if the host is on Casper cluster.
+         - Throws exception otherwise.
     """
 
     def __init__(self, **kwargs):
