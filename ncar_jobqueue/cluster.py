@@ -1,34 +1,44 @@
+import re
+import socket
 
 import dask_jobqueue
-import socket
-import re
-import dask.distributed
+
 
 def _get_base_class():
     """Function to determine which base class to use.
     """
-    filter1 = r'^cheyenne'
-    filter2 = r'r\d(i)\d(n)\d*'
-    cheyenne_filter = re.compile('|'.join([filter1, filter2]))
-    dav_filter = re.compile(r'^casper')
-    hostname = socket.gethostname()
-    host_on_cheyenne = cheyenne_filter.search(hostname)
-    host_on_dav = dav_filter.search(hostname)
+    cheyenne = re.compile(r'cheyenne')
+    casper = re.compile(r'casper')
+    hobart = re.compile(r'hobart')
+
+    hostname = socket.getfqdn()
+
+    is_on_cheyenne = cheyenne.search(hostname)
+    is_on_casper = casper.search(hostname)
+    is_on_hobart = hobart.search(hostname)
+
     try:
-        if host_on_cheyenne:
+        if is_on_cheyenne:
             return dask_jobqueue.PBSCluster
 
-        elif host_on_dav:
+        elif is_on_casper:
             return dask_jobqueue.SLURMCluster
 
-        else:
-            return dask.distributed.LocalCluster
+        elif is_on_hobart:
+            return dask_jobqueue.PBSCluster
 
-    except:
-        return dask.distributed.LocalCluster
+        else:
+            raise RuntimeError(
+                'Unable to determine which NCAR cluster you are running on...'
+            )
+
+    except Exception as exc:
+        raise exc('Unable to determine which NCAR cluster you are running on...')
 
 
 _base_class = _get_base_class()
+
+
 class NCARCluster(_base_class):
     """Class to launch Dask Clusters with NCAR's queueing systems (Slurm, PBS)
 
@@ -36,9 +46,9 @@ class NCARCluster(_base_class):
     -------
     cluster : object
 
-         - PBSCluster, if the host on Cheyenne cluster
-         - SLURMCluster, if the host is on DAV cluster
-         - LocalCluster, if the host is neither on Cheyenne nor DAV clusters
+         - PBSCluster, if the host on Cheyenne cluster or Hobart cluster
+         - SLURMCluster, if the host is on Casper cluster
+         - Throws exception, if the host is neither on Cheyenne, Hobart nor Casper clusters
     """
 
     def __init__(self, **kwargs):
