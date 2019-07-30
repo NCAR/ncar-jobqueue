@@ -4,9 +4,9 @@
 """The setup script."""
 
 import sys
-from setuptools import setup, find_packages
-import versioneer
 from os.path import exists
+
+from setuptools import find_packages, setup
 
 if exists('README.rst'):
     with open('README.rst') as f:
@@ -27,7 +27,7 @@ setup(
     name='ncar-jobqueue',
     packages=find_packages(),
     url='https://github.com/NCAR/ncar-jobqueue',
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
+    setup_requires=['setuptools_scm', 'setuptools>=30.3.0'],
     zip_safe=False,
 )
