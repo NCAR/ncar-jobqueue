@@ -1,39 +1,20 @@
-import re
-import socket
-
 import dask_jobqueue
+
+from .util import identify_host
 
 
 def _get_base_class():
     """Function to determine which base class to use.
     """
-    cheyenne = re.compile(r'cheyenne')
-    casper = re.compile(r'casper')
-    hobart = re.compile(r'hobart')
 
-    hostname = socket.getfqdn()
+    base_classes = {
+        'hobart': dask_jobqueue.PBSCluster,
+        'cheyenne': dask_jobqueue.PBSCluster,
+        'casper': dask_jobqueue.SLURMCluster,
+    }
 
-    is_on_cheyenne = cheyenne.search(hostname)
-    is_on_casper = casper.search(hostname)
-    is_on_hobart = hobart.search(hostname)
-
-    try:
-        if is_on_cheyenne:
-            return dask_jobqueue.PBSCluster
-
-        elif is_on_casper:
-            return dask_jobqueue.SLURMCluster
-
-        elif is_on_hobart:
-            return dask_jobqueue.PBSCluster
-
-        else:
-            raise RuntimeError(
-                'Unable to determine which NCAR cluster you are running on...'
-            )
-
-    except Exception as exc:
-        raise exc('Unable to determine which NCAR cluster you are running on...')
+    host = identify_host()
+    return base_classes[host]
 
 
 _base_class = _get_base_class()

@@ -24,6 +24,7 @@ setup(
     install_requires=install_requires,
     license='Apache License 2.0',
     long_description=long_description,
+    include_package_data=True,
     name='ncar-jobqueue',
     packages=find_packages(),
     url='https://github.com/NCAR/ncar-jobqueue',
