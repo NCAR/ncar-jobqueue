@@ -16,5 +16,5 @@ jobqueue:
   {% if host == 'hobart' %}
       {{ hobart }}
   {% else %}
-      {{ cheyenne_dav }}
+      {{ cheyenne_casper }}
   {% endif %}
