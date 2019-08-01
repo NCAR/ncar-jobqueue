@@ -3,12 +3,12 @@ hobart:
     name: dask-worker
     cores: 48                  # Total number of cores per job
     memory: '96GB'             # Total amount of memory per job
-    processes: 2                # Number of Python processes per job
-    interface: null              # Network interface to use like eth0 or ib0
+    processes: 3                # Number of Python processes per job
+#    interface: null              # Network interface to use like eth0 or ib0
     queue: medium
     walltime: '08:00:00'
-    resource-spec: null
-    job-extra: ["-o /scratch/cluster/${USER}/", "-e /scratch/cluster/${USER}/", "-r n"]
+    resource-spec: nodes=1:ppn=48
+    job-extra: ["-r n"]
     local-directory: "/scratch/cluster/${USER}/dask-tmp"
 
 cheyenne_casper:

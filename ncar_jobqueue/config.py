@@ -97,10 +97,13 @@ def _generate_config(config_data_file_path, template_file_path):
 config_data_file_path = os.path.join(here, 'host_configs.yaml')
 template_file_path = os.path.join(here, 'jobqueue_template.yaml')
 config_path = os.path.join(here, 'jobqueue.yaml')
+destination = os.path.join(os.path.expanduser('~'), '.dask')
 
 with open(config_path, 'w') as outfile:
     data = _generate_config(config_data_file_path, template_file_path)
     data = yaml.safe_load(data)
     yaml.dump(data, outfile, default_flow_style=False)
 
-ensure_file(source=config_path, comment=False)
+ensure_file(source=config_path, destination=destination, comment=False)
+dask.config.collect(paths=[destination])
+dask.config.refresh()
