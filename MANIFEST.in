@@ -1,7 +1,8 @@
-recursive-include ncar_jobqueue *.py
-
 include LICENSE
 include README.rst
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+
+recursive-include ncar_jobqueue *.py
+recursive-include ncar_jobqueue *.yaml

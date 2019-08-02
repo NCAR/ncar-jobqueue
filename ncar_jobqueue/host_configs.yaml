@@ -1,0 +1,41 @@
+hobart:
+  pbs:
+    name: dask-worker
+    cores: 48                  # Total number of cores per job
+    memory: '96GB'             # Total amount of memory per job
+    processes: 1                # Number of Python processes per job
+    # interface: null              # ib0 doesn't seem to be working on Hobart
+    queue: medium
+    walltime: '08:00:00'
+    resource-spec: nodes=1:ppn=48
+    log-directory: "/scratch/cluster/${USER}"
+    job-extra: ["-r n"]
+    local-directory: null
+
+
+cheyenne_casper:
+  pbs:
+#    project: XXXXXXXX
+    name: dask-worker
+    cores: 36                   # Total number of cores per job
+    memory: '109GB'             # Total amount of memory per job
+    processes: 1                # Number of Python processes per job
+    interface: ib0              # Network interface to use like eth0 or ib0
+    queue: regular
+    walltime: '01:00:00'
+    resource-spec: select=1:ncpus=36:mem=109GB
+    log-directory: "/glade/scratch/${USER}"
+    job-extra: []
+    local-directory: null
+
+  slurm:
+#    project: XXXXXXXX
+    name: dask-worker
+    cores: 1                    # Total number of cores per job
+    memory: '25GB'              # Total amount of memory per job
+    processes: 1                # Number of Python processes per job
+    interface: ib0
+    walltime: '06:00:00'
+    log-directory: "/glade/scratch/${USER}"
+    job-extra: ["-C casper", "-o /glade/scratch/${USER}/dask-worker.o%J", "-e /glade/scratch/${USER}/dask-worker.e%J"]
+    local-directory: null

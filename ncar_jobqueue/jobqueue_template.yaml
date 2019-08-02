@@ -1,0 +1,18 @@
+distributed:
+  scheduler:
+    bandwidth: 1000000000     # GB MB/s estimated worker-worker bandwidth
+  worker:
+    memory:
+      target: 0.90  # Avoid spilling to disk
+      spill: False  # Avoid spilling to disk
+      pause: 0.80  # fraction at which we pause worker threads
+      terminate: 0.95  # fraction at which we terminate the worker
+  comm:
+    compression: null
+
+jobqueue:
+  {% if host == 'hobart' %}
+      {{ hobart }}
+  {% else %}
+      {{ cheyenne_casper }}
+  {% endif %}

@@ -2,6 +2,7 @@
 """ Top-level module for ncar-jobqueue. """
 from pkg_resources import DistributionNotFound, get_distribution
 
+from . import config
 from .cluster import NCARCluster
 
 try:
