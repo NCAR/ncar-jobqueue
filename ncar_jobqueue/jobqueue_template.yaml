@@ -1,12 +1,4 @@
 distributed:
-  dashboard:
-    link:
-      {% if host == 'hobart' %}
-        "/proxy/{port}/status"
-      {% else %}
-        "/user/{JUPYTERHUB_USER}/proxy/{port}/status"
-      {% endif %}
-
   scheduler:
     bandwidth: 1000000000     # GB MB/s estimated worker-worker bandwidth
   worker:

@@ -1,3 +1,4 @@
+import dask
 import dask_jobqueue
 
 from .util import identify_host
@@ -14,6 +15,23 @@ def _get_base_class():
     }
 
     host = identify_host()
+
+    if host == 'cheyenne':
+        dask.config.set(
+            {
+                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status'
+            }
+        )
+    elif host == 'casper':
+        dask.config.set(
+            {
+                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status'
+            }
+        )
+    elif host == 'hobart':
+        dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
+    else:
+        pass
     return base_classes[host]
 
 
