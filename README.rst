@@ -5,7 +5,9 @@ ncar-jobqueue
     :target: https://pypi.org/project/ncar-jobqueue
     :alt: Python Package Index
 
-Utilities for expanding dask-jobqueue with appropriate settings for NCAR's clusters.
+Utilities for expanding dask-jobqueue_ with appropriate settings for NCAR's clusters.
+
+.. _dask-jobqueue: https://dask-jobqueue.readthedocs.io/en/latest/
 
 Supported clusters:
 
