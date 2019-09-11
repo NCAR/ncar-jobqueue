@@ -10,7 +10,7 @@ hobart:
     resource-spec: nodes=1:ppn=48
     log-directory: "/scratch/cluster/${USER}"
     job-extra: ["-r n"]
-    local-directory: null
+    local-directory: "/scratch/cluster/${USER}"
 
 
 cheyenne_casper:
@@ -26,7 +26,7 @@ cheyenne_casper:
     resource-spec: select=1:ncpus=36:mem=109GB
     log-directory: "/glade/scratch/${USER}"
     job-extra: []
-    local-directory: null
+    local-directory: "/glade/scratch/${USER}"
 
   slurm:
 #    project: XXXXXXXX
@@ -38,4 +38,4 @@ cheyenne_casper:
     walltime: '06:00:00'
     log-directory: "/glade/scratch/${USER}"
     job-extra: ["-C casper", "-o /glade/scratch/${USER}/dask-worker.o%J", "-e /glade/scratch/${USER}/dask-worker.e%J"]
-    local-directory: null
+    local-directory: "/glade/scratch/${USER}"
