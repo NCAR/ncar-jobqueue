@@ -43,7 +43,7 @@ def ensure_file(source, destination=None, comment=True):
 
     try:
         if not os.path.exists(destination):
-            dask.config.makedirs(directory, exist_ok=True)
+            os.makedirs(directory, exist_ok=True)
 
             # Atomically create destination.  Parallel testing discovered
             # a race condition where a process can be busy creating the
