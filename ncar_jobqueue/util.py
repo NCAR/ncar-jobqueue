@@ -7,7 +7,7 @@ def identify_host():
     """
     cheyenne = re.compile(r'cheyenne')
     casper = re.compile(r'casper')
-    hobart = re.compile(r'hobart')
+    hobart = re.compile(r'h([a-zA-Z0-9]+).cgd.ucar.edu')
 
     hostname = socket.getfqdn()
 
