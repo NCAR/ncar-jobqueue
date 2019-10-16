@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 import os
+import shutil
 from tempfile import mkdtemp
 
 import dask
@@ -110,4 +111,4 @@ ensure_file(source=config_path, destination=destination, comment=False)
 
 dask.config.collect(paths=[destination])
 dask.config.refresh()
-os.removedirs(temp_dir)
+shutil.rmtree(temp_dir, ignore_errors=True)
