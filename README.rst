@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/code-style?label=Code%20Style&style=for-the-badge
+.. image:: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/CI?label=CI&style=for-the-badge
     :target: https://github.com/NCAR/ncar-jobqueue/actions
     :alt: GitHub Workflow Status
 .. image:: https://img.shields.io/pypi/v/ncar-jobqueue.svg?style=for-the-badge

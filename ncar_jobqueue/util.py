@@ -5,9 +5,9 @@ import socket
 def identify_host():
     """Function to determine which host the client is running from.
     """
-    cheyenne = re.compile(r'cheyenne')
-    casper = re.compile(r'casper')
-    hobart = re.compile(r'h([a-zA-Z0-9]+).cgd.ucar.edu')
+    cheyenne = re.compile(r"cheyenne")
+    casper = re.compile(r"casper")
+    hobart = re.compile(r"h([a-zA-Z0-9]+).cgd.ucar.edu")
 
     hostname = socket.getfqdn()
 
@@ -17,18 +17,18 @@ def identify_host():
 
     try:
         if is_on_cheyenne:
-            return 'cheyenne'
+            return "cheyenne"
 
         elif is_on_casper:
-            return 'casper'
+            return "casper"
 
         elif is_on_hobart:
-            return 'hobart'
+            return "hobart"
 
         else:
             message = (
-                f'Unable to determine which NCAR cluster you are running on...'
-                f'\n\tSupported machines include: cheyenne, casper/dav, hobart.'
+                f"Unable to determine which NCAR cluster you are running on..."
+                f"\n\tSupported machines include: cheyenne, casper/dav, hobart."
             )
             raise RuntimeError(message)
 

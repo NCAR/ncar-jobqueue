@@ -4,12 +4,11 @@ import shutil
 from tempfile import mkdtemp
 
 import dask
+import pkg_resources
 import yaml
 from jinja2 import Environment, FileSystemLoader
 
 from .util import identify_host
-
-here = os.path.dirname(__file__)
 
 
 def ensure_file(source, destination=None, comment=True):
@@ -50,20 +49,20 @@ def ensure_file(source, destination=None, comment=True):
             # Atomically create destination.  Parallel testing discovered
             # a race condition where a process can be busy creating the
             # destination while another process reads an empty config file.
-            tmp = '%s.tmp.%d' % (destination, os.getpid())
+            tmp = "%s.tmp.%d" % (destination, os.getpid())
             with open(source) as f:
                 lines = list(f)
 
             if comment:
                 lines = [
-                    '# ' + line if line.strip() and not line.startswith('#') else line
+                    "# " + line if line.strip() and not line.startswith("#") else line
                     for line in lines
                 ]
 
             lines = [os.path.expandvars(line) for line in lines]
 
-            with open(tmp, 'w') as f:
-                f.write(''.join(lines))
+            with open(tmp, "w") as f:
+                f.write("".join(lines))
 
             try:
                 os.rename(tmp, destination)
@@ -79,7 +78,7 @@ def _generate_config(config_data_file_path, template_file_path):
 
     # Load data from YAML into Python dictionary
     config_data = yaml.safe_load(open(config_data_file_path))
-    config_data['host'] = host
+    config_data["host"] = host
 
     # Load Jinja2 template
     template_dir = os.path.dirname(os.path.abspath(template_file_path))
@@ -96,14 +95,19 @@ def _generate_config(config_data_file_path, template_file_path):
     return data
 
 
-config_data_file_path = os.path.join(here, 'host_configs.yaml')
-template_file_path = os.path.join(here, 'jobqueue_template.yaml')
+config_data_file_path = pkg_resources.resource_stream(
+    "ncar_jobqueue", "host_configs.yaml"
+)
+
+template_file_path = pkg_resources.resource_stream(
+    "ncar_jobqueue", "jobqueue_template.yaml"
+)
 
 temp_dir = mkdtemp()
 
-config_path = os.path.join(temp_dir, 'jobqueue.yaml')
-destination = os.path.join(os.path.expanduser('~'), '.dask')
-with open(config_path, 'w') as outfile:
+config_path = os.path.join(temp_dir, "jobqueue.yaml")
+destination = os.path.join(os.path.expanduser("~"), ".dask")
+with open(config_path, "w") as outfile:
     data = _generate_config(config_data_file_path, template_file_path)
     data = yaml.safe_load(data)
     yaml.dump(data, outfile, default_flow_style=False)
