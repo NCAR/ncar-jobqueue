@@ -4,12 +4,11 @@ import shutil
 from tempfile import mkdtemp
 
 import dask
+import pkg_resources
 import yaml
 from jinja2 import Environment, FileSystemLoader
 
 from .util import identify_host
-
-here = os.path.dirname(__file__)
 
 
 def ensure_file(source, destination=None, comment=True):
@@ -96,8 +95,13 @@ def _generate_config(config_data_file_path, template_file_path):
     return data
 
 
-config_data_file_path = os.path.join(here, 'host_configs.yaml')
-template_file_path = os.path.join(here, 'jobqueue_template.yaml')
+config_data_file_path = pkg_resources.resource_stream(
+    'ncar_jobqueue', 'host_configs.yaml'
+)
+
+template_file_path = pkg_resources.resource_stream(
+    'ncar_jobqueue', 'jobqueue_template.yaml'
+)
 
 temp_dir = mkdtemp()
 

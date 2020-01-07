@@ -1,4 +1,4 @@
-name: code-style
+name: CI
 
 on:
   push:
@@ -57,3 +57,21 @@ jobs:
       - name: isort check
         run: |
           isort --recursive --check-only .
+
+  tests:
+    name: Running Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+          python -m pip install pytest dask-jobqueue dask distributed
+          python -m pip install .
+      - name: Running Tests
+        run: |
+          pytest -v
