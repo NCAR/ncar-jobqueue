@@ -9,27 +9,27 @@ def _get_base_class():
     """
 
     base_classes = {
-        'hobart': dask_jobqueue.PBSCluster,
-        'cheyenne': dask_jobqueue.PBSCluster,
-        'casper': dask_jobqueue.SLURMCluster,
+        "hobart": dask_jobqueue.PBSCluster,
+        "cheyenne": dask_jobqueue.PBSCluster,
+        "casper": dask_jobqueue.SLURMCluster,
     }
 
     host = identify_host()
 
-    if host == 'cheyenne':
+    if host == "cheyenne":
         dask.config.set(
             {
-                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status'
+                "distributed.dashboard.link": "https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status"
             }
         )
-    elif host == 'casper':
+    elif host == "casper":
         dask.config.set(
             {
-                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status'
+                "distributed.dashboard.link": "https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status"
             }
         )
-    elif host == 'hobart':
-        dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
+    elif host == "hobart":
+        dask.config.set({"distributed.dashboard.link": "/proxy/{port}/status"})
     else:
         pass
     return base_classes[host]
