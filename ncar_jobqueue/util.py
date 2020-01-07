@@ -26,9 +26,11 @@ def identify_host():
             return 'hobart'
 
         else:
-            raise RuntimeError(
-                'Unable to determine which NCAR cluster you are running on...'
+            message = (
+                f'Unable to determine which NCAR cluster you are running on...'
+                f'\n\tSupported machines include: cheyenne, casper/dav, hobart.'
             )
+            raise RuntimeError(message)
 
     except Exception as exc:
-        raise exc('Unable to determine which NCAR cluster you are running on...')
+        raise exc
