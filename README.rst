@@ -1,9 +1,12 @@
-ncar-jobqueue
-==============
-
+.. image:: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/code-style?label=Code%20Style&style=for-the-badge
+    :target: https://github.com/NCAR/ncar-jobqueue/actions
+    :alt: GitHub Workflow Status
 .. image:: https://img.shields.io/pypi/v/ncar-jobqueue.svg?style=for-the-badge
     :target: https://pypi.org/project/ncar-jobqueue
     :alt: Python Package Index
+
+ncar-jobqueue
+==============
 
 Utilities for expanding dask-jobqueue_ with appropriate settings for NCAR's clusters.
 
@@ -42,7 +45,7 @@ Casper
     >>> cluster
     NCARCluster(cores=2, memory=50.00 GB, workers=2/2, jobs=2/2)
     >>> client = Client(cluster)
-    
+
 Cheyenne
 ~~~~~~~~
 
@@ -57,8 +60,8 @@ Cheyenne
     >>> cluster
     NCARCluster(cores=72, memory=218.00 GB, workers=2/2, jobs=2/2)
     >>> client = Client(cluster)
-    
- 
+
+
 Hobart
 ~~~~~~
 
@@ -73,4 +76,3 @@ Hobart
     >>> cluster
     NCARCluster(cores=96, memory=192.00 GB, workers=2/2, jobs=2/2)
     >>> client = Client(cluster)
-    
