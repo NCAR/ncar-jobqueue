@@ -95,11 +95,11 @@ def _generate_config(config_data_file_path, template_file_path):
     return data
 
 
-config_data_file_path = pkg_resources.resource_stream(
+config_data_file_path = pkg_resources.resource_filename(
     "ncar_jobqueue", "host_configs.yaml"
 )
 
-template_file_path = pkg_resources.resource_stream(
+template_file_path = pkg_resources.resource_filename(
     "ncar_jobqueue", "jobqueue_template.yaml"
 )
 
