@@ -1,5 +1,8 @@
+from warnings import warn
+
 import dask
 import dask_jobqueue
+import distributed
 
 from .util import identify_host
 
@@ -12,6 +15,7 @@ def _get_base_class():
         "hobart": dask_jobqueue.PBSCluster,
         "cheyenne": dask_jobqueue.PBSCluster,
         "casper": dask_jobqueue.SLURMCluster,
+        "unknown": distributed.LocalCluster,
     }
 
     host = identify_host()
@@ -32,6 +36,10 @@ def _get_base_class():
         dask.config.set({"distributed.dashboard.link": "/proxy/{port}/status"})
     else:
         pass
+
+    if host == "unknown":
+        message = f"Unable to determine which NCAR cluster you are running on... Returning a `distributed.LocalCluster` class."
+        warn(message)
     return base_classes[host]
 
 
@@ -47,7 +55,7 @@ class NCARCluster(_base_class):
 
          - PBSCluster, if the host on Cheyenne cluster or Hobart cluster.
          - SLURMCluster, if the host is on Casper cluster.
-         - Throws exception otherwise.
+         - Uses distributed.LocalCluster otherwise.
     """
 
     def __init__(self, **kwargs):

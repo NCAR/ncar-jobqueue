@@ -76,3 +76,20 @@ Hobart
     >>> cluster
     NCARCluster(cores=96, memory=192.00 GB, workers=2/2, jobs=2/2)
     >>> client = Client(cluster)
+
+
+Non-NCAR machines
+~~~~~~~~~~~~~~~~~
+
+On non-NCAR machines, `ncar-jobqueue` will warn the user, and it will use `distributed.LocalCluster`:
+
+
+.. code-block:: python
+
+    >>> from ncar_jobqueue import NCARCluster
+    .../ncar_jobqueue/cluster.py:42: UserWarning: Unable to determine which NCAR cluster you are running on... Returning a `distributed.LocalCluster` class.
+    warn(message)
+    >>> from dask.distributed import Client
+    >>> cluster = NCARCluster()
+    >>> cluster
+    NCARCluster('tcp://127.0.0.1:49334', workers=4, threads=8, memory=17.18 GB)
