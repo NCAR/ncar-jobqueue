@@ -8,37 +8,36 @@ from .util import identify_host
 
 
 def _get_base_class():
-    """Function to determine which base class to use.
-    """
+    """Function to determine which base class to use."""
 
     base_classes = {
-        "hobart": dask_jobqueue.PBSCluster,
-        "cheyenne": dask_jobqueue.PBSCluster,
-        "casper": dask_jobqueue.SLURMCluster,
-        "unknown": distributed.LocalCluster,
+        'hobart': dask_jobqueue.PBSCluster,
+        'cheyenne': dask_jobqueue.PBSCluster,
+        'casper': dask_jobqueue.SLURMCluster,
+        'unknown': distributed.LocalCluster,
     }
 
     host = identify_host()
 
-    if host == "cheyenne":
+    if host == 'cheyenne':
         dask.config.set(
             {
-                "distributed.dashboard.link": "https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status"
+                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status'
             }
         )
-    elif host == "casper":
+    elif host == 'casper':
         dask.config.set(
             {
-                "distributed.dashboard.link": "https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status"
+                'distributed.dashboard.link': 'https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status'
             }
         )
-    elif host == "hobart":
-        dask.config.set({"distributed.dashboard.link": "/proxy/{port}/status"})
+    elif host == 'hobart':
+        dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
     else:
         pass
 
-    if host == "unknown":
-        message = f"Unable to determine which NCAR cluster you are running on... Returning a `distributed.LocalCluster` class."
+    if host == 'unknown':
+        message = 'Unable to determine which NCAR cluster you are running on... Returning a `distributed.LocalCluster` class.'
         warn(message)
     return base_classes[host]
 

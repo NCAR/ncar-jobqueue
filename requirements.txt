@@ -1,0 +1,4 @@
+dask-jobqueue
+dask[core]
+jinja2
+pyyaml
