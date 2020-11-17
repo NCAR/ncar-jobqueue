@@ -13,6 +13,8 @@ distributed:
 jobqueue:
   {% if host == 'hobart' %}
       {{ hobart }}
+  {% else if host == 'izumi' %}
+      {{ izumi }}
   {% else %}
       {{ cheyenne_casper }}
   {% endif %}

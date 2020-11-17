@@ -12,6 +12,7 @@ def _get_base_class():
 
     base_classes = {
         'hobart': dask_jobqueue.PBSCluster,
+        'izumi': dask_jobqueue.PBSCluster,
         'cheyenne': dask_jobqueue.PBSCluster,
         'casper': dask_jobqueue.SLURMCluster,
         'unknown': distributed.LocalCluster,
@@ -33,6 +34,10 @@ def _get_base_class():
         )
     elif host == 'hobart':
         dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
+
+    elif host == 'izumi':
+        dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
+
     else:
         pass
 
@@ -52,7 +57,7 @@ class NCARCluster(_base_class):
     -------
     cluster : object
 
-         - PBSCluster, if the host on Cheyenne cluster or Hobart cluster.
+         - PBSCluster, if the host on Cheyenne cluster or Hobart or Izumi clusters.
          - SLURMCluster, if the host is on Casper cluster.
          - Uses distributed.LocalCluster otherwise.
     """

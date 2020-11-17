@@ -12,6 +12,20 @@ hobart:
     job-extra: ['-r n']
     local-directory: '/scratch/cluster/${USER}'
 
+izumi:
+  pbs:
+    name: dask-worker
+    cores: 48 # Total number of cores per job
+    memory: '96GB' # Total amount of memory per job
+    processes: 1 # Number of Python processes per job
+    # interface: null              # ib0 doesn't seem to be working on Hobart
+    queue: medium
+    walltime: '08:00:00'
+    resource-spec: nodes=1:ppn=48
+    log-directory: '/scratch/cluster/${USER}'
+    job-extra: ['-r n']
+    local-directory: '/scratch/cluster/${USER}'
+
 cheyenne_casper:
   pbs:
     #    project: XXXXXXXX
