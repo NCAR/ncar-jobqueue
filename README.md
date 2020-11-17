@@ -58,7 +58,7 @@ NCARCluster(cores=2, memory=50.00 GB, workers=2/2, jobs=2/2)
 
 ### Cheyenne
 
-```
+```python
 >>> from ncar_jobqueue import NCARCluster
 >>> from dask.distributed import Client
 >>> cluster = NCARCluster()
