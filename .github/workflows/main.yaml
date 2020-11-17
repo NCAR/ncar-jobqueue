@@ -2,13 +2,11 @@ name: CI
 
 on:
   push:
-    branches: "*"
+    branches: '*'
   pull_request:
     branches: master
 
-
 jobs:
-
   lint-black:
     name: black-formatter
     runs-on: ubuntu-latest
