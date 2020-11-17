@@ -9,15 +9,15 @@ from setuptools import find_packages, setup
 with open('README.md') as f:
     long_description = f.read()
 
-
-install_requires = ['dask-jobqueue', 'jinja2', 'dask', 'pyyaml']
+with open('requirements.txt') as f:
+    requirements = f.read().strip().split('\n')
 
 
 setup(
     maintainer='NCAR XDev Team',
     maintainer_email='xdev@ucar.edu',
     description="Utilities for expanding dask-jobqueue with appropriate settings for NCAR's clusters",
-    install_requires=install_requires,
+    install_requires=requirements,
     license='Apache License 2.0',
     python_requires='>=3.6',
     long_description_content_type='text/markdown',
