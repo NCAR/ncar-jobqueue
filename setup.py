@@ -18,8 +18,8 @@ install_requires = ["dask-jobqueue", "jinja2", "dask", "pyyaml"]
 
 
 setup(
-    maintainer="Anderson Banihirwe",
-    maintainer_email="abanihi@ucar.edu",
+    maintainer="NCAR XDev Team",
+    maintainer_email="xdev@ucar.edu",
     description="Utilities for expanding dask-jobqueue with appropriate settings for NCAR's clusters",
     install_requires=install_requires,
     license="Apache License 2.0",
@@ -28,6 +28,11 @@ setup(
     name="ncar-jobqueue",
     packages=find_packages(),
     url="https://github.com/NCAR/ncar-jobqueue",
+    project_urls={
+        "Documentation": "https://github.com/NCAR/ncar-jobqueue",
+        "Source": "https://github.com/NCAR/ncar-jobqueue",
+        "Tracker": "https://github.com/NCAR/ncar-jobqueue",
+    },
     use_scm_version={"version_scheme": "post-release", "local_scheme": "dirty-tag"},
     setup_requires=["setuptools_scm", "setuptools>=30.3.0"],
     zip_safe=False,
