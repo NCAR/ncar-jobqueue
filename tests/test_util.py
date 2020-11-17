@@ -1,5 +1,3 @@
-import pytest
-
 from ncar_jobqueue.util import identify_host, in_notebook
 
 
