@@ -55,7 +55,7 @@ class NCARCluster(_base_class):
 
     Returns
     -------
-    cluster : object
+    cluster : cluster object
 
          - PBSCluster, if the host on Cheyenne cluster or Hobart or Izumi clusters.
          - SLURMCluster, if the host is on Casper cluster.
