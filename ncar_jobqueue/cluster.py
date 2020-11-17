@@ -36,7 +36,7 @@ def _get_base_class():
             {'distributed.dashboard.link': dashboard_links.get(host, '/proxy/{port}/status')}
         )
     else:
-        dask.config.set({'distributed.dashboard.link': '/{port]/status'})
+        dask.config.set({'distributed.dashboard.link': '/{port}/status'})
 
     return base_classes[host]
 
