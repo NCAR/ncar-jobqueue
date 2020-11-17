@@ -19,6 +19,7 @@ setup(
     description="Utilities for expanding dask-jobqueue with appropriate settings for NCAR's clusters",
     install_requires=install_requires,
     license='Apache License 2.0',
+    python_requires='>=3.6',
     long_description_content_type='text/markdown',
     long_description=long_description,
     include_package_data=True,
