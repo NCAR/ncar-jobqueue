@@ -7,7 +7,7 @@ def identify_host():
     cheyenne = re.compile(r'cheyenne')
     casper = re.compile(r'casper')
     hobart = re.compile(r'h([a-zA-Z0-9]+).cgd.ucar.edu')
-    izumi = re.compile(r'izumi')
+    izumi = re.compile(r'i([a-zA-Z0-9]+).unified.ucar.edu')
     hostname = socket.getfqdn()
 
     is_on_cheyenne = cheyenne.search(hostname)
