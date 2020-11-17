@@ -7,6 +7,7 @@
     - [Casper](#casper)
     - [Cheyenne](#cheyenne)
     - [Hobart](#hobart)
+    - [Izumi](#izumi)
     - [Non-NCAR machines](#non-ncar-machines)
 
 ## Badges
@@ -24,6 +25,7 @@ Supported clusters:
 - Cheyenne
 - Casper (DAV)
 - CGD's Hobart
+- CGD's Izumi
 
 ## Installation
 
@@ -50,7 +52,7 @@ conda install -c conda-forge ncar-jobqueue
 >>> cluster = NCARCluster()
 >>> cluster
 NCARCluster(cores=0, memory=0 B, workers=0/0, jobs=0/0)
->>> cluster.scale(2)
+>>> cluster.scale(jobs=2)
 >>> cluster
 NCARCluster(cores=2, memory=50.00 GB, workers=2/2, jobs=2/2)
 >>> client = Client(cluster)
@@ -64,7 +66,7 @@ NCARCluster(cores=2, memory=50.00 GB, workers=2/2, jobs=2/2)
 >>> cluster = NCARCluster()
 >>> cluster
 NCARCluster(cores=0, memory=0 B, workers=0/0, jobs=0/0)
->>> cluster.scale(2)
+>>> cluster.scale(jobs=2)
 >>> cluster
 NCARCluster(cores=72, memory=218.00 GB, workers=2/2, jobs=2/2)
 >>> client = Client(cluster)
@@ -78,7 +80,21 @@ NCARCluster(cores=72, memory=218.00 GB, workers=2/2, jobs=2/2)
 >>> cluster = NCARCluster()
 >>> cluster
 NCARCluster(cores=0, memory=0 B, workers=0/0, jobs=0/0)
->>> cluster.scale(2)
+>>> cluster.scale(jobs=2)
+>>> cluster
+NCARCluster(cores=96, memory=192.00 GB, workers=2/2, jobs=2/2)
+>>> client = Client(cluster)
+```
+
+### Izumi
+
+```python
+>>> from ncar_jobqueue import NCARCluster
+>>> from dask.distributed import Client
+>>> cluster = NCARCluster()
+>>> cluster
+NCARCluster(cores=0, memory=0 B, workers=0/0, jobs=0/0)
+>>> cluster.scale(jobs=2)
 >>> cluster
 NCARCluster(cores=96, memory=192.00 GB, workers=2/2, jobs=2/2)
 >>> client = Client(cluster)
