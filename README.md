@@ -35,8 +35,7 @@ NCAR-jobqueue can be installed from PyPI with pip:
 python -m pip install ncar-jobqueue
 ```
 
-(COMING SOON)
-NCAR-jobqueue will also be available from conda-forge for conda installations:
+NCAR-jobqueue is also available from conda-forge for conda installations:
 
 ```bash
 conda install -c conda-forge ncar-jobqueue
