@@ -90,7 +90,7 @@ config_data_file_path = pkg_resources.resource_filename('ncar_jobqueue', 'host_c
 template_file_path = pkg_resources.resource_filename('ncar_jobqueue', 'jobqueue_template.yaml')
 temp_dir = mkdtemp()
 
-config_path = os.path.join(temp_dir, 'jobqueue.yaml')
+config_path = os.path.join(temp_dir, 'ncar-jobqueue.yaml')
 destination = dask.config.PATH
 with open(config_path, 'w') as outfile:
     data = _generate_config(config_data_file_path, template_file_path)
