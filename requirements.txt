@@ -1,4 +1,4 @@
 dask-jobqueue>=0.7.1
-dask[core]>=2.14
+dask>=2.14
 jinja2
 pyyaml
