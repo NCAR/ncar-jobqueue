@@ -1,6 +1,8 @@
 import re
 import socket
 
+import psutil
+
 
 def identify_host():
     """Function to determine which host the client is running from."""
@@ -44,3 +46,11 @@ def in_notebook():
     except ImportError:
         return False
     return True
+
+
+def is_running_from_jupyterhub():
+    """
+    Find out if the code is running from a jupyterhub
+    """
+
+    return any([re.search('jupyterhub-singleuser', x) for x in psutil.Process().parent().cmdline()])

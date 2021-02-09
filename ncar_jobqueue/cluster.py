@@ -4,9 +4,14 @@ import dask
 import dask_jobqueue
 import distributed
 
-from .util import identify_host, in_notebook
+from .util import identify_host, in_notebook, is_running_from_jupyterhub
 
 is_notebook = in_notebook()
+running_from_jupyterhub = is_running_from_jupyterhub()
+dashboard_links = {
+    'cheyenne': 'https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status',
+    'casper': 'https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status',
+}
 
 
 def _get_base_class():
@@ -21,20 +26,15 @@ def _get_base_class():
     }
 
     host = identify_host()
-    dashboard_links = {
-        'cheyenne': 'https://jupyterhub.ucar.edu/ch/user/{USER}/proxy/{port}/status',
-        'casper': 'https://jupyterhub.ucar.edu/dav/user/{USER}/proxy/{port}/status',
-    }
-
     if host == 'unknown':
         warn(
             'Unable to determine which NCAR cluster you are running on... Using an instance of `distributed.LocalCluster` class.'
         )
 
-    if is_notebook and host != 'unknown':
-        dask.config.set(
-            {'distributed.dashboard.link': dashboard_links.get(host, '/proxy/{port}/status')}
-        )
+    if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper'}:
+        dask.config.set({'distributed.dashboard.link': dashboard_links[host]})
+    else:
+        dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
 
     return base_classes[host]
 

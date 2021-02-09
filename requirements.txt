@@ -1,4 +1,2 @@
-dask-jobqueue>=0.7.1
-dask>=2.14
+dask-jobqueue>=0.7.2
 jinja2
-pyyaml
