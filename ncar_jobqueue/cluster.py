@@ -33,7 +33,7 @@ def _get_base_class():
 
     if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper'}:
         dask.config.set({'distributed.dashboard.link': dashboard_links[host]})
-    else:
+    elif is_notebook and host != 'unknown':
         dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
 
     return base_classes[host]

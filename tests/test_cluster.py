@@ -10,6 +10,4 @@ from ncar_jobqueue import NCARCluster
 def test_ncar_cluster():
     cluster = NCARCluster()
     assert isinstance(cluster, LocalCluster)
-    assert (
-        cluster.dashboard_link == f"/proxy/{cluster.scheduler_info['services']['dashboard']}/status"
-    )
+    assert str(cluster.scheduler_info['services']['dashboard']) in cluster.dashboard_link
