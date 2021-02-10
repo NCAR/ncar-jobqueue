@@ -40,7 +40,10 @@ def _get_base_class():
 
 
 class NCARCluster:
-    """Class to launch Dask Clusters with NCAR's queueing systems (Slurm, PBS)
+    """Launches Dask Clusters with NCAR's queueing systems (Slurm, PBS).
+
+    This class relies on cluster classes defined by `dask-jobqueue`. For documentation,
+    please see dask-joqueue's documentation at https://dask-jobqueue.readthedocs.io .
 
     Returns
     -------
