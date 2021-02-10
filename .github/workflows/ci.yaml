@@ -6,8 +6,8 @@ on:
   pull_request:
     branches:
       - '*'
-  schedule:
-    - cron: '0 0 * * *' # Daily “At 00:00”
+  # schedule:
+  #   - cron: '0 0 * * *' # Daily “At 00:00”
   workflow_dispatch: # allows you to trigger manually
 
 jobs:
@@ -34,11 +34,10 @@ jobs:
           activate-environment: ncar-jobqueue-dev
           auto-update-conda: false
           python-version: ${{ matrix.python-version }}
+          environment-file: ci/environment.yml
 
-      - name: Set up conda environment
+      - name: List conda packages
         run: |
-          mamba env update -f ci/environment.yml
-          python -m pip install -e .
           conda list
 
       - name: Run Tests
