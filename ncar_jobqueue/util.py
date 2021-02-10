@@ -34,14 +34,19 @@ def identify_host():
 
 
 def in_notebook():
-    """
-    Check if the code is running inside a Jupyter Notebook.
+    """Check if the code is running inside a Jupyter Notebook.
+
     Adapted from https://github.com/tqdm/tqdm/blob/master/tqdm/autonotebook.py
     """
     try:
         from IPython import get_ipython
 
-        if 'IPKernelApp' not in get_ipython().config:  # pragma: no cover
+        interactive_shell = get_ipython()
+        if hasattr(interactive_shell, 'config'):
+            config = interactive_shell.config
+        else:
+            config = None
+        if not config or 'IPKernelApp' not in config:  # pragma: no cover
             return False
     except ImportError:
         return False
@@ -49,8 +54,6 @@ def in_notebook():
 
 
 def is_running_from_jupyterhub():
-    """
-    Find out if the code is running from a jupyterhub
-    """
+    """Find out if the code is running from a jupyterhub."""
 
     return any([re.search('jupyterhub-singleuser', x) for x in psutil.Process().parent().cmdline()])

@@ -24,11 +24,11 @@ def _get_base_class():
         'casper': dask_jobqueue.SLURMCluster,
         'unknown': distributed.LocalCluster,
     }
-
     host = identify_host()
     if host == 'unknown':
         warn(
-            'Unable to determine which NCAR cluster you are running on... Using an instance of `distributed.LocalCluster` class.'
+            'Unable to determine which NCAR cluster you are running on...'
+            'Using a local cluster via `distributed.LocalCluster`.'
         )
 
     if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper'}:
@@ -39,20 +39,17 @@ def _get_base_class():
     return base_classes[host]
 
 
-_base_class = _get_base_class()
-
-
-class NCARCluster(_base_class):
+class NCARCluster:
     """Class to launch Dask Clusters with NCAR's queueing systems (Slurm, PBS)
 
     Returns
     -------
     cluster : cluster object
 
-         - PBSCluster, if the host on Cheyenne cluster or Hobart or Izumi clusters.
-         - SLURMCluster, if the host is on Casper cluster.
-         - Uses distributed.LocalCluster otherwise.
+         - `dask_jobqueue.PBSCluster`, if the host on Cheyenne, CGD's Hobart and Izumi clusters.
+         - `dask_jobqueue.SLURMCluster`, if the host is on Casper (DAV) cluster.
+         - `distributed.LocalCluster` otherwise.
     """
 
-    def __init__(self, **kwargs):
-        super(NCARCluster, self).__init__(**kwargs)
+    def __new__(cls, *args, **kwargs):
+        return _get_base_class()(*args, **kwargs)
