@@ -2,10 +2,8 @@ import os
 from warnings import warn
 
 import dask
-import dask_jobqueue
-import distributed
 
-from .util import identify_host, in_notebook, is_running_from_jupyterhub
+from .util import CLUSTERS, identify_host, in_notebook, is_running_from_jupyterhub
 
 jupyterhub_server_name = os.environ.get('JUPYTERHUB_SERVER_NAME', None)
 is_notebook = in_notebook()
@@ -14,16 +12,6 @@ running_from_jupyterhub = is_running_from_jupyterhub()
 
 def _get_base_class():
     """Function to determine which base class to use."""
-
-    base_classes = {
-        'hobart': dask_jobqueue.PBSCluster,
-        'izumi': dask_jobqueue.PBSCluster,
-        'cheyenne-login': dask_jobqueue.PBSCluster,
-        'cheyenne-compute': dask_jobqueue.PBSCluster,
-        'dav-login': dask_jobqueue.PBSCluster,
-        'dav-compute': dask_jobqueue.PBSCluster,
-        'unknown': distributed.LocalCluster,
-    }
     host = identify_host()
     if host == 'unknown':
         warn(
@@ -31,11 +19,7 @@ def _get_base_class():
             'Using a local cluster via `distributed.LocalCluster`.'
         )
 
-    if (
-        is_notebook
-        and running_from_jupyterhub
-        and host in {'cheyenne-login', 'dav-login', 'cheyenne-compute', 'dav-compute'}
-    ):
+    if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper-dav'}:
         dashboard_link = 'https://jupyterhub.hpc.ucar.edu/stable/user/{USER}/proxy/{port}/status'
         if jupyterhub_server_name:
             dashboard_link = (
@@ -47,7 +31,7 @@ def _get_base_class():
         dask.config.set({'distributed.dashboard.link': dashboard_link})
     elif is_notebook and host != 'unknown':
         dask.config.set({'distributed.dashboard.link': '/proxy/{port}/status'})
-    return base_classes[host]
+    return CLUSTERS[host].base_class
 
 
 class NCARCluster:
