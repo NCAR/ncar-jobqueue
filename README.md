@@ -3,6 +3,7 @@
 - [ncar-jobqueue](#ncar-jobqueue)
   - [Badges](#badges)
   - [Installation](#installation)
+  - [Configuration](#configuration)
   - [Usage](#usage)
     - [Casper](#casper)
     - [Cheyenne](#cheyenne)
