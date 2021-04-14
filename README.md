@@ -13,7 +13,7 @@
 
 `ncar-jobqueue` provides utilities for configuring [dask-jobqueue](https://dask-jobqueue.readthedocs.io/en/latest/) with appropriate default settings for NCAR's clusters.
 
-Supported clusters are:
+The following compute servers are supported:
 
 - Cheyenne (cheyenne.ucar.edu)
 - Casper (DAV) (casper.ucar.edu)
