@@ -22,11 +22,10 @@ Supported clusters are:
 
 ## Badges
 
-| CI  | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
-| :-- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-
-| **Package** | [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link] |
-| **License** | [![License][license-badge]][repo-link] |
+| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| **Package** |                                                         [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                                                         |
+| **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
 
 ## Installation
 
