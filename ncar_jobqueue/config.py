@@ -24,6 +24,8 @@ def ensure_file(source, destination_path):
 
 def configure(destination_path):
     host = identify_host()
+    if host == 'unknown':
+        return
     with open(destination_path) as f:
         original_data = yaml.safe_load(f)[host]
     _, data = original_data.copy().popitem()
@@ -44,5 +46,4 @@ destination_dir = pathlib.Path(dask.config.PATH)
 destination_path = destination_dir / config_data_file_path.parts[-1]
 
 ensure_file(source=config_data_file_path, destination_path=destination_path)
-dask.config.collect(paths=[destination_dir])
 configure(destination_path)
