@@ -120,7 +120,7 @@ izumi:
 
 **Note:**
 
-- To set a default project account that is used by `dask-jobqueue` when launching jobs, uncomment the `project` key/line in `~/.config/dask/ncar-jobqueue.yaml` and set it to an appropriate value.
+- To configure a default project account that is used by `dask-jobqueue` when submitting batch jobs, uncomment the `project` key/line in `~/.config/dask/ncar-jobqueue.yaml` and set it to an appropriate value.
 
 ## Usage
 
