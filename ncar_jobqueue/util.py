@@ -6,31 +6,30 @@ import psutil
 
 def identify_host():
     """Function to determine which host the client is running from."""
-    cheyenne = re.compile(r'cheyenne')
-    casper = re.compile(r'casper')
+    cheyenne_login = re.compile(r'cheyenne([0-9]+).cheyenne.ucar.edu')
+    cheyenne_compute = re.compile(r'r([a-zA-Z0-9]+).ib0.cheyenne.ucar.edu')
+    dav_login = re.compile(r'casper')
+    dav_compute = re.compile(r'crhtc([a-zA-Z0-9]+).hpc.ucar.edu')
     hobart = re.compile(r'h([a-zA-Z0-9]+).cgd.ucar.edu')
     izumi = re.compile(r'i([a-zA-Z0-9]+).unified.ucar.edu')
+
+    regexes = [
+        ('cheyenne-login', cheyenne_login),
+        ('cheyenne-compute', cheyenne_compute),
+        ('dav-login', dav_login),
+        ('dav-compute', dav_compute),
+        ('izumi', izumi),
+        ('hobart', hobart),
+    ]
+
     hostname = socket.getfqdn()
+    host = 'unknown'
 
-    is_on_cheyenne = cheyenne.search(hostname)
-    is_on_casper = casper.search(hostname)
-    is_on_hobart = hobart.search(hostname)
-    is_on_izumi = izumi.search(hostname)
-
-    if is_on_cheyenne:
-        return 'cheyenne'
-
-    elif is_on_casper:
-        return 'casper'
-
-    elif is_on_hobart:
-        return 'hobart'
-
-    elif is_on_izumi:
-        return 'izumi'
-
-    else:
-        return 'unknown'
+    for name, regex in regexes:
+        if regex.search(hostname):
+            host = name
+            break
+    return host
 
 
 def in_notebook():
@@ -56,4 +55,4 @@ def in_notebook():
 def is_running_from_jupyterhub():
     """Find out if the code is running from a jupyterhub."""
 
-    return any([re.search('jupyterhub-singleuser', x) for x in psutil.Process().parent().cmdline()])
+    return any([re.search('jupyter-labhub', x) for x in psutil.Process().parent().cmdline()])
