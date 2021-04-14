@@ -7,7 +7,7 @@ import distributed
 
 from .util import identify_host, in_notebook, is_running_from_jupyterhub
 
-jupyterhub_server_name = os.environ['JUPYTERHUB_SERVER_NAME']
+jupyterhub_server_name = os.environ.get('JUPYTERHUB_SERVER_NAME', None)
 is_notebook = in_notebook()
 running_from_jupyterhub = is_running_from_jupyterhub()
 
