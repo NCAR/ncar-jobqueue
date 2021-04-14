@@ -15,10 +15,10 @@
 
 Supported clusters are:
 
-- Cheyenne
-- Casper (DAV)
-- CGD's Hobart
-- CGD's Izumi
+- Cheyenne (cheyenne.ucar.edu)
+- Casper (DAV) (casper.ucar.edu)
+- Hobart (hobart.cgd.ucar.edu)
+- Izumi (izumi.unified.ucar.edu)
 
 ## Badges
 
