@@ -17,9 +17,8 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'false'
-          do_not_skip: '["workflow_dispatch", "schedule"]'
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
           paths_ignore: '["**/docs/**"]'
-          cancel_others: false
   linting:
     runs-on: ubuntu-latest
     needs: pre-job
