@@ -11,22 +11,21 @@
     - [Izumi](#izumi)
     - [Non-NCAR machines](#non-ncar-machines)
 
+`ncar-jobqueue` provides utilities for configuring [dask-jobqueue](https://dask-jobqueue.readthedocs.io/en/latest/) with appropriate default settings for NCAR's clusters.
+
+The following compute servers are supported:
+
+- Cheyenne (cheyenne.ucar.edu)
+- Casper (DAV) (casper.ucar.edu)
+- Hobart (hobart.cgd.ucar.edu)
+- Izumi (izumi.unified.ucar.edu)
+
 ## Badges
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
 | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Docs**    |                                                                    [![Documentation Status][rtd-badge]][rtd-link]                                                                    |
 | **Package** |                                                         [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                                                         |
 | **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
-
-Utilities for expanding [dask-jobqueue](https://dask-jobqueue.readthedocs.io/en/latest/) with appropriate settings for NCAR's clusters.
-
-Supported clusters:
-
-- Cheyenne
-- Casper (DAV)
-- CGD's Hobart
-- CGD's Izumi
 
 ## Installation
 
@@ -127,7 +126,7 @@ izumi:
 
 **Note:**
 
-Online documentation for `dask-jobqueue` is available [here][rtd-link].
+⚠️ Online documentation for `dask-jobqueue` is available [here][rtd-link]. ⚠️
 
 ### Casper
 
@@ -197,7 +196,7 @@ LocalCluster(3a7dd0f6, 'tcp://127.0.0.1:64184', workers=4, threads=8, memory=17.
 [github-lint-link]: https://github.com/NCAR/ncar-jobqueue/actions?query=workflow%3Alinting
 [codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/ncar-jobqueue.svg?logo=codecov&style=for-the-badge
 [codecov-link]: https://codecov.io/gh/NCAR/ncar-jobqueue
-[rtd-badge]: https://img.shields.io/readthedocs/ncar-jobqueue/latest.svg?style=for-the-badge
+[rtd-badge]: https://img.shields.io/readthedocs/dask-jobqueue/latest.svg?style=for-the-badge
 [rtd-link]: https://jobqueue.dask.org/en/latest/?badge=latest
 [pypi-badge]: https://img.shields.io/pypi/v/ncar-jobqueue?logo=pypi&style=for-the-badge
 [pypi-link]: https://pypi.org/project/ncar-jobqueue
