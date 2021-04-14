@@ -11,22 +11,22 @@
     - [Izumi](#izumi)
     - [Non-NCAR machines](#non-ncar-machines)
 
-## Badges
+`ncar-jobqueue` provides utilities for configuring [dask-jobqueue](https://dask-jobqueue.readthedocs.io/en/latest/) with appropriate default settings for NCAR's clusters.
 
-| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Docs**    |                                                                    [![Documentation Status][rtd-badge]][rtd-link]                                                                    |
-| **Package** |                                                         [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                                                         |
-| **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
-
-Utilities for expanding [dask-jobqueue](https://dask-jobqueue.readthedocs.io/en/latest/) with appropriate settings for NCAR's clusters.
-
-Supported clusters:
+Supported clusters are:
 
 - Cheyenne
 - Casper (DAV)
 - CGD's Hobart
 - CGD's Izumi
+
+## Badges
+
+| CI  | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
+| :-- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+
+| **Package** | [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link] |
+| **License** | [![License][license-badge]][repo-link] |
 
 ## Installation
 
@@ -127,7 +127,7 @@ izumi:
 
 **Note:**
 
-Online documentation for `dask-jobqueue` is available [here][rtd-link].
+⚠️ Online documentation for `dask-jobqueue` is available [here][rtd-link]. ⚠️
 
 ### Casper
 
