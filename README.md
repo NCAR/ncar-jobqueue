@@ -157,7 +157,7 @@ PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 ```python
 >>> from ncar_jobqueue import NCARCluster
 >>> from dask.distributed import Client
->>> cluster = NCARCluster(project='XXXXXXXX')
+>>> cluster = NCARCluster()
 >>> cluster
 PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 >>> cluster.scale(jobs=2)
@@ -169,7 +169,7 @@ PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 ```python
 >>> from ncar_jobqueue import NCARCluster
 >>> from dask.distributed import Client
->>> cluster = NCARCluster(project='XXXXXXXX')
+>>> cluster = NCARCluster()
 >>> cluster
 PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 >>> cluster.scale(jobs=2)
