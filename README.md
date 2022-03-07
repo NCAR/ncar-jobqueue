@@ -22,10 +22,10 @@ The following compute servers are supported:
 
 ## Badges
 
-| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Package** |                                                         [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                                                         |
-| **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
+| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
+| :---------- | :-----------------------------------------------------------------------------------------------------------------: |
+| **Package** |                        [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                         |
+| **License** |                                       [![License][license-badge]][repo-link]                                        |
 
 ## Installation
 
@@ -191,9 +191,7 @@ LocalCluster(3a7dd0f6, 'tcp://127.0.0.1:64184', workers=4, threads=8, memory=17.
 ```
 
 [github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/CI?label=CI&logo=github&style=for-the-badge
-[github-lint-badge]: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/linting?label=linting&logo=github&style=for-the-badge
 [github-ci-link]: https://github.com/NCAR/ncar-jobqueue/actions?query=workflow%3ACI
-[github-lint-link]: https://github.com/NCAR/ncar-jobqueue/actions?query=workflow%3Alinting
 [codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/ncar-jobqueue.svg?logo=codecov&style=for-the-badge
 [codecov-link]: https://codecov.io/gh/NCAR/ncar-jobqueue
 [rtd-badge]: https://img.shields.io/readthedocs/dask-jobqueue/latest.svg?style=for-the-badge
