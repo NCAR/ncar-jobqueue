@@ -25,8 +25,6 @@ The following compute servers are supported:
 - Hobart (hobart.cgd.ucar.edu)
 - Izumi (izumi.unified.ucar.edu)
 
-                                                             |
-
 ## Installation
 
 NCAR-jobqueue can be installed from PyPI with pip:
