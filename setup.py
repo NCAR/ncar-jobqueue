@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """The setup script."""
 
@@ -19,7 +18,7 @@ setup(
     description="Utilities for expanding dask-jobqueue with appropriate settings for NCAR's clusters",
     install_requires=requirements,
     license='Apache License 2.0',
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     long_description_content_type='text/markdown',
     long_description=long_description,
     include_package_data=True,
@@ -32,6 +31,5 @@ setup(
         'Tracker': 'https://github.com/NCAR/ncar-jobqueue',
     },
     use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
-    setup_requires=['setuptools_scm', 'setuptools>=30.3.0'],
     zip_safe=False,
 )
