@@ -38,7 +38,7 @@ jobs:
           environment-file: ci/environment.yml
           extra-specs: |
             python=${{ matrix.python-version }}
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           channels: conda-forge
           mamba-version: '*'
