@@ -206,7 +206,7 @@ LocalCluster(3a7dd0f6, 'tcp://127.0.0.1:64184', workers=4, threads=8, memory=17.
 [github-ci-link]: https://github.com/NCAR/ncar-jobqueue/actions?query=workflow%3ACI
 [codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/ncar-jobqueue.svg?logo=codecov
 [codecov-link]: https://codecov.io/gh/NCAR/ncar-jobqueue
-[rtd-badge]: https://img.shields.io/readthedocs/ncar-jobqueue/latest.svg
+[rtd-badge]: https://img.shields.io/readthedocs/dask-jobqueue/latest.svg
 [rtd-link]: https://jobqueue.dask.org/en/latest/
 [pypi-badge]: https://img.shields.io/pypi/v/ncar-jobqueue?logo=pypi
 [pypi-link]: https://pypi.org/project/ncar-jobqueue
