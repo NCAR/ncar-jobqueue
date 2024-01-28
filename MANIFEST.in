@@ -1,8 +1,15 @@
+include CHANGELOG.md
+include CONTRIBUTING.md
 include LICENSE
 include README.md
+include requirements.txt
+include pyproject.toml
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
 recursive-include ncar_jobqueue *.py
 recursive-include ncar_jobqueue *.yaml
+
+prune tests*
+prune ci*
