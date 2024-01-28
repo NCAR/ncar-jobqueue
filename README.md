@@ -10,6 +10,7 @@
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Usage](#usage)
+    - [Derecho](#derecho)
     - [Casper](#casper)
     - [Cheyenne](#cheyenne)
     - [Hobart](#hobart)
@@ -20,6 +21,7 @@
 
 The following compute servers are supported:
 
+- Derecho (derecho.hpc.ucar.edu)
 - Cheyenne (cheyenne.ucar.edu)
 - Casper (DAV) (casper.ucar.edu)
 - Hobart (hobart.cgd.ucar.edu)
@@ -126,6 +128,18 @@ izumi:
 
 ⚠️ Online documentation for `dask-jobqueue` is available [here][rtd-link]. ⚠️
 
+### Derecho
+
+```python
+>>> from ncar_jobqueue import NCARCluster
+>>> from dask.distributed import Client
+>>> cluster = NCARCluster(project='XXXXXXXX')
+>>> cluster
+PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
+>>> cluster.scale(jobs=2)
+>>> client = Client(cluster)
+```
+
 ### Casper
 
 ```python
@@ -188,12 +202,12 @@ warn(message)
 LocalCluster(3a7dd0f6, 'tcp://127.0.0.1:64184', workers=4, threads=8, memory=17.18 GB)
 ```
 
-[github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/ncar-jobqueue/CI?label=CI&logo=github
+[github-ci-badge]: https://img.shields.io/github/actions/workflow/status/NCAR/ncar-jobqueue/ci.yaml
 [github-ci-link]: https://github.com/NCAR/ncar-jobqueue/actions?query=workflow%3ACI
 [codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/ncar-jobqueue.svg?logo=codecov
 [codecov-link]: https://codecov.io/gh/NCAR/ncar-jobqueue
 [rtd-badge]: https://img.shields.io/readthedocs/ncar-jobqueue/latest.svg
-[rtd-link]: https://ncar-jobqueue.readthedocs.io/en/latest/?badge=latest
+[rtd-link]: https://jobqueue.dask.org/en/latest/
 [pypi-badge]: https://img.shields.io/pypi/v/ncar-jobqueue?logo=pypi
 [pypi-link]: https://pypi.org/project/ncar-jobqueue
 [conda-badge]: https://img.shields.io/conda/vn/conda-forge/ncar-jobqueue?logo=anaconda
