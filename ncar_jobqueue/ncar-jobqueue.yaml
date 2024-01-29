@@ -4,7 +4,7 @@ derecho:
     name: dask-worker-derecho
     cores: 128 # Total number of cores per job
     memory: '235GB' # Total amount of memory per job
-    processes: 128 # Number of Python processes per job
+    processes: 32 # Number of Python processes per job
     interface: ext # Network interface to use like eth0 or ib0
     queue: main
     walltime: '01:00:00'
