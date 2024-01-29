@@ -1,16 +1,33 @@
+derecho:
+  pbs:
+    #    project: XXXXXXXX
+    name: dask-worker-derecho
+    cores: 128 # Total number of cores per job
+    memory: '235GB' # Total amount of memory per job
+    processes: 32 # Number of Python processes per job
+    interface: hsn0 # Network interface to use like eth0 or ib0
+    queue: main
+    walltime: '01:00:00'
+    resource-spec: select=1:ncpus=128:mem=235GB
+    log-directory: '/glade/derecho/scratch/${USER}/dask/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/local-dir'
+    job-extra: ['-l job_priority=economy']
+    env-extra: []
+    death-timeout: 60
+
 cheyenne:
   pbs:
     #    project: XXXXXXXX
     name: dask-worker-cheyenne
-    cores: 18 # Total number of cores per job
+    cores: 36 # Total number of cores per job
     memory: '109GB' # Total amount of memory per job
-    processes: 18 # Number of Python processes per job
+    processes: 9 # Number of Python processes per job
     interface: ext # Network interface to use like eth0 or ib0
     queue: regular
     walltime: '01:00:00'
     resource-spec: select=1:ncpus=36:mem=109GB
-    log-directory: '/glade/scratch/${USER}/dask/cheyenne/logs'
-    local-directory: '/glade/scratch/${USER}/dask/cheyenne/local-dir'
+    log-directory: '/glade/cheyenne/scratch/${USER}/dask/logs'
+    local-directory: '/glade/cheyenne/scratch/${USER}/dask/local-dir'
     job-extra: []
     env-extra: []
     death-timeout: 60

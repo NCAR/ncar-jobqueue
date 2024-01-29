@@ -15,7 +15,7 @@ def ensure_file(source, destination_path):
     """This tries to move a default configuration file to a default location."""
     if destination_path.exists():
         last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(destination_path))
-        new_config_time = datetime.datetime.fromisoformat('2021-04-14')
+        new_config_time = datetime.datetime.fromisoformat('2024-01-28')
         if last_modified < new_config_time:
             shutil.copyfile(source, destination_path)
     else:
