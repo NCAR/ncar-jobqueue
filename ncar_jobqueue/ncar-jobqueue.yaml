@@ -43,8 +43,8 @@ casper-dav:
     walltime: '01:00:00'
     resource-spec: select=1:ncpus=1:mem=25GB
     queue: casper
-    log-directory: '/glade/scratch/${USER}/dask/casper-dav/logs'
-    local-directory: '/glade/scratch/${USER}/dask/casper-dav/local-dir'
+    log-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/local-dir'
     job-extra: []
     env-extra: []
     death-timeout: 60

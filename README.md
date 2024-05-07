@@ -12,7 +12,6 @@
   - [Usage](#usage)
     - [Derecho](#derecho)
     - [Casper](#casper)
-    - [Cheyenne](#cheyenne)
     - [Hobart](#hobart)
     - [Izumi](#izumi)
     - [Non-NCAR machines](#non-ncar-machines)
@@ -22,7 +21,6 @@
 The following compute servers are supported:
 
 - Derecho (derecho.hpc.ucar.edu)
-- Cheyenne (cheyenne.ucar.edu)
 - Casper (DAV) (casper.ucar.edu)
 - Hobart (hobart.cgd.ucar.edu)
 - Izumi (izumi.unified.ucar.edu)
@@ -49,20 +47,20 @@ conda install -c conda-forge ncar-jobqueue
 <summary>ncar-jobqueue.yaml</summary>
 
 ```yaml
-cheyenne:
+derecho:
   pbs:
     #project: XXXXXXXX
-    name: dask-worker-cheyenne
-    cores: 18 # Total number of cores per job
-    memory: '109GB' # Total amount of memory per job
-    processes: 18 # Number of Python processes per job
-    interface: ib0 # Network interface to use like eth0 or ib0
-    queue: regular
+    name: dask-worker-derecho
+    cores: 128 # Total number of cores per job
+    memory: '235GB' # Total amount of memory per job
+    processes: 32 # Number of Python processes per job
+    interface: hsn0 # Network interface to use like eth0 or ib0
+    queue: main
     walltime: '01:00:00'
-    resource-spec: select=1:ncpus=36:mem=109GB
-    log-directory: '/glade/scratch/${USER}/dask/cheyenne/logs'
-    local-directory: '/glade/scratch/${USER}/dask/cheyenne/local-dir'
-    job-extra: []
+    resource-spec: select=1:ncpus=128:mem=235GB
+    log-directory: '/glade/derecho/scratch/${USER}/dask/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/local-dir'
+    job-extra: ['-l job_priority=economy']
     env-extra: []
     death-timeout: 60
 
@@ -77,8 +75,8 @@ casper-dav:
     walltime: '01:00:00'
     resource-spec: select=1:ncpus=1:mem=25GB
     queue: casper
-    log-directory: '/glade/scratch/${USER}/dask/casper-dav/logs'
-    local-directory: '/glade/scratch/${USER}/dask/casper-dav/local-dir'
+    log-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/local-dir'
     job-extra: []
     env-extra: []
     death-timeout: 60
@@ -141,18 +139,6 @@ PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 ```
 
 ### Casper
-
-```python
->>> from ncar_jobqueue import NCARCluster
->>> from dask.distributed import Client
->>> cluster = NCARCluster(project='XXXXXXXX')
->>> cluster
-PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
->>> cluster.scale(jobs=2)
->>> client = Client(cluster)
-```
-
-### Cheyenne
 
 ```python
 >>> from ncar_jobqueue import NCARCluster
