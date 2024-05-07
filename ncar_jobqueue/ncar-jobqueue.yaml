@@ -11,7 +11,7 @@ derecho:
     resource-spec: select=1:ncpus=128:mem=235GB
     log-directory: '/glade/derecho/scratch/${USER}/dask/logs'
     local-directory: '/glade/derecho/scratch/${USER}/dask/local-dir'
-    job-extra: ['-l job_priority=economy','-r n']
+    job-extra: ['-q develop@desched1','-r n']
     env-extra: []
     death-timeout: 60
 
