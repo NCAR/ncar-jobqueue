@@ -2,16 +2,16 @@ derecho:
   pbs:
     #    project: XXXXXXXX
     name: dask-worker-derecho
-    cores: 128 # Total number of cores per job
-    memory: '235GB' # Total amount of memory per job
-    processes: 32 # Number of Python processes per job
+    cores: 1 # Total number of cores per job
+    memory: '4GB' # Total amount of memory per job
+    processes: 1 # Number of Python processes per job
     interface: hsn0 # Network interface to use like eth0 or ib0
     queue: main
     walltime: '01:00:00'
     resource-spec: select=1:ncpus=128:mem=235GB
     log-directory: '/glade/derecho/scratch/${USER}/dask/logs'
     local-directory: '/glade/derecho/scratch/${USER}/dask/local-dir'
-    job-extra: ['-l job_priority=economy']
+    job-extra: ['-l job_priority=economy','-r n']
     env-extra: []
     death-timeout: 60
 
@@ -36,16 +36,16 @@ casper-dav:
   pbs:
     #    project: XXXXXXXX
     name: dask-worker-casper-dav
-    cores: 2 # Total number of cores per job
-    memory: '25GB' # Total amount of memory per job
+    cores: 1 # Total number of cores per job
+    memory: '4GB' # Total amount of memory per job
     processes: 1 # Number of Python processes per job
     interface: ext
     walltime: '01:00:00'
     resource-spec: select=1:ncpus=1:mem=25GB
     queue: casper
-    log-directory: '/glade/scratch/${USER}/dask/casper-dav/logs'
-    local-directory: '/glade/scratch/${USER}/dask/casper-dav/local-dir'
-    job-extra: []
+    log-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/casper-dav/local-dir'
+    job-extra: ['-r n']
     env-extra: []
     death-timeout: 60
 
