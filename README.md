@@ -10,9 +10,8 @@
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Usage](#usage)
-    - [Derecho](#derecho)
     - [Casper](#casper)
-    - [Cheyenne](#cheyenne)
+    - [Derecho](#derecho)
     - [Hobart](#hobart)
     - [Izumi](#izumi)
     - [Non-NCAR machines](#non-ncar-machines)
@@ -21,11 +20,12 @@
 
 The following compute servers are supported:
 
+- Casper (casper.hpc.ucar.edu)
 - Derecho (derecho.hpc.ucar.edu)
-- Cheyenne (cheyenne.ucar.edu)
-- Casper (DAV) (casper.ucar.edu)
 - Hobart (hobart.cgd.ucar.edu)
 - Izumi (izumi.unified.ucar.edu)
+
+**CISL discourages the use of Derecho for Dask. Please use Casper instead unless you are sure you can properly utilize a significant portion of the CPU cores on a Derecho node (e.g., via [dask-mpi](https://mpi.dask.org/en/latest/)).**
 
 ## Installation
 
@@ -49,37 +49,37 @@ conda install -c conda-forge ncar-jobqueue
 <summary>ncar-jobqueue.yaml</summary>
 
 ```yaml
-cheyenne:
+casper:
   pbs:
     #project: XXXXXXXX
-    name: dask-worker-cheyenne
-    cores: 18 # Total number of cores per job
-    memory: '109GB' # Total amount of memory per job
-    processes: 18 # Number of Python processes per job
-    interface: ib0 # Network interface to use like eth0 or ib0
-    queue: regular
+    name: dask-worker-casper
+    cores: 1 # Total number of cores per job
+    memory: '4GiB' # Total amount of memory per job
+    processes: 1 # Number of Python processes per job
+    interface: ext # Network interface to use (high-speed ethernet)
     walltime: '01:00:00'
-    resource-spec: select=1:ncpus=36:mem=109GB
-    log-directory: '/glade/scratch/${USER}/dask/cheyenne/logs'
-    local-directory: '/glade/scratch/${USER}/dask/cheyenne/local-dir'
-    job-extra: []
+    resource-spec: select=1:ncpus=1:mem=4GB
+    queue: casper
+    log-directory: '/glade/derecho/scratch/${USER}/dask/casper/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/casper/local-dir'
+    job-extra: ['-r n']
     env-extra: []
     death-timeout: 60
 
-casper-dav:
+derecho:
   pbs:
     #project: XXXXXXXX
-    name: dask-worker-casper-dav
-    cores: 2 # Total number of cores per job
-    memory: '25GB' # Total amount of memory per job
+    name: dask-worker-derecho
+    cores: 1 # Total number of cores per job
+    memory: '4GiB' # Total amount of memory per job
     processes: 1 # Number of Python processes per job
-    interface: ib0
+    interface: hsn0 # Network interface to use (Slingshot)
+    queue: develop
     walltime: '01:00:00'
-    resource-spec: select=1:ncpus=1:mem=25GB
-    queue: casper
-    log-directory: '/glade/scratch/${USER}/dask/casper-dav/logs'
-    local-directory: '/glade/scratch/${USER}/dask/casper-dav/local-dir'
-    job-extra: []
+    resource-spec: select=1:ncpus=128:mem=235GB
+    log-directory: '/glade/derecho/scratch/${USER}/dask/derecho/logs'
+    local-directory: '/glade/derecho/scratch/${USER}/dask/derecho/local-dir'
+    job-extra: ['-l job_priority=economy', '-r -n']
     env-extra: []
     death-timeout: 60
 
@@ -128,18 +128,6 @@ izumi:
 
 ⚠️ Online documentation for `dask-jobqueue` is available [here][rtd-link]. ⚠️
 
-### Derecho
-
-```python
->>> from ncar_jobqueue import NCARCluster
->>> from dask.distributed import Client
->>> cluster = NCARCluster(project='XXXXXXXX')
->>> cluster
-PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
->>> cluster.scale(jobs=2)
->>> client = Client(cluster)
-```
-
 ### Casper
 
 ```python
@@ -152,7 +140,7 @@ PBSCluster(0f23b4bf, 'tcp://xx.xxx.x.x:xxxx', workers=0, threads=0, memory=0 B)
 >>> client = Client(cluster)
 ```
 
-### Cheyenne
+### Derecho
 
 ```python
 >>> from ncar_jobqueue import NCARCluster
