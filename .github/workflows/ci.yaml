@@ -25,7 +25,7 @@ jobs:
       matrix:
         python-version: ['3.9', '3.10', '3.11', '3.12']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
         with:
           fetch-depth: 0
       - name: Create conda environment
@@ -50,7 +50,7 @@ jobs:
           python -m pytest
 
       - name: Upload code coverage to Codecov
-        uses: codecov/codecov-action@v3.1.0
+        uses: codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378
         with:
           file: ./coverage.xml
           flags: unittests
