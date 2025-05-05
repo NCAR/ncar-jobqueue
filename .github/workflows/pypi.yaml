@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'NCAR/ncar-jobqueue'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb
         name: Install Python
         with:
           python-version: 3.9
@@ -40,7 +40,7 @@ jobs:
           else
             echo "✅ Looks good"
           fi
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: releases
           path: dist
@@ -49,11 +49,11 @@ jobs:
     needs: build-artifacts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb
         name: Install Python
         with:
           python-version: 3.9
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
         with:
           name: releases
           path: dist
@@ -66,12 +66,12 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
         with:
           name: releases
           path: dist
       - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.8.10
+        uses: pypa/gh-action-pypi-publish@b7f401de30cb6434a1e19f805ff006643653240e
         with:
           user: __token__
           password: ${{ secrets.PYPI_PASSWORD }}
