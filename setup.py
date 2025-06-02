@@ -2,7 +2,6 @@
 
 """The setup script."""
 
-
 from setuptools import find_packages, setup
 
 with open('README.md') as f:
