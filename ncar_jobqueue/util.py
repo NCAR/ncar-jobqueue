@@ -10,27 +10,22 @@ Cluster = namedtuple('Cluster', ['type', 'base_class'])
 CLUSTERS = {
     'hobart': Cluster('pbs', dask_jobqueue.PBSCluster),
     'izumi': Cluster('pbs', dask_jobqueue.PBSCluster),
-    'cheyenne': Cluster('pbs', dask_jobqueue.PBSCluster),
-    'casper-dav': Cluster('pbs', dask_jobqueue.PBSCluster),
+    'casper': Cluster('pbs', dask_jobqueue.PBSCluster),
     'unknown': Cluster('pbs', distributed.LocalCluster),
     'derecho': Cluster('pbs', dask_jobqueue.PBSCluster),
 }
-cheyenne_login = re.compile(r'cheyenne([0-9]+).cheyenne.ucar.edu')
-cheyenne_compute = re.compile(r'r([a-zA-Z0-9]+).ib0.cheyenne.ucar.edu')
 
 derecho_compute = re.compile(r'dec[0-9]+\.hsn\.de\.hpc\.ucar\.edu')
 derecho_login = re.compile(r'derecho[0-9]+\.hsn\.de\.hpc\.ucar\.edu')
 
-dav_login = re.compile(r'casper')
-dav_compute = re.compile(r'crhtc([a-zA-Z0-9]+).hpc.ucar.edu')
+casper_login = re.compile(r'casper')
+casper_compute = re.compile(r'crhtc([a-zA-Z0-9]+).hpc.ucar.edu')
 hobart = re.compile(r'h([a-zA-Z0-9]+).cgd.ucar.edu')
 izumi = re.compile(r'i([a-zA-Z0-9]+).unified.ucar.edu')
 
 regexes = [
-    ('cheyenne', cheyenne_login),
-    ('cheyenne', cheyenne_compute),
-    ('casper-dav', dav_login),
-    ('casper-dav', dav_compute),
+    ('casper', casper_login),
+    ('casper', casper_compute),
     ('izumi', izumi),
     ('hobart', hobart),
     ('derecho', derecho_compute),
