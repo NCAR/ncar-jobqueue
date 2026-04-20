@@ -19,7 +19,7 @@ def _get_base_class():
             'Using a local cluster via `distributed.LocalCluster`.'
         )
 
-    if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper-dav'}:
+    if is_notebook and running_from_jupyterhub and host in {'cheyenne', 'casper'}:
         dashboard_link = 'https://jupyterhub.hpc.ucar.edu/stable/user/{USER}/proxy/{port}/status'
         if jupyterhub_server_name:
             dashboard_link = (
@@ -44,7 +44,7 @@ class NCARCluster:
     -------
     cluster : cluster object
 
-         - `dask_jobqueue.PBSCluster`, if the host on Cheyenne, Casper (DAV), CGD's Hobart and Izumi clusters.
+         - `dask_jobqueue.PBSCluster`, if the host on Derecho, Casper (DAV), CGD's Hobart and Izumi clusters.
          - `distributed.LocalCluster` otherwise.
     """
 
