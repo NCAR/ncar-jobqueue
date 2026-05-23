@@ -3,9 +3,9 @@ import datetime
 import os
 import pathlib
 import shutil
+from importlib.resources import as_file, files
 
 import dask
-import pkg_resources
 import yaml
 
 from .util import identify_host
@@ -39,11 +39,10 @@ def configure(destination_path):
     )
 
 
-config_data_file_path = pathlib.Path(
-    pkg_resources.resource_filename('ncar_jobqueue', 'ncar-jobqueue.yaml')
-)
+config_data_file = files('ncar_jobqueue').joinpath('ncar-jobqueue.yaml')
 destination_dir = pathlib.Path(dask.config.PATH)
-destination_path = destination_dir / config_data_file_path.parts[-1]
+destination_path = destination_dir / config_data_file.name
 
-ensure_file(source=config_data_file_path, destination_path=destination_path)
+with as_file(config_data_file) as config_data_file_path:
+    ensure_file(source=config_data_file_path, destination_path=destination_path)
 configure(destination_path)
