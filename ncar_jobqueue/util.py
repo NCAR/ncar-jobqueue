@@ -1,3 +1,4 @@
+import os
 import re
 import socket
 from collections import namedtuple
@@ -37,9 +38,22 @@ regexes = [
     ('derecho', derecho_login),
 ]
 
+NCAR_HOSTS = {
+    'casper': 'casper-dav',
+    'cheyenne': 'cheyenne',
+    'dav': 'casper-dav',
+    'derecho': 'derecho',
+    'hobart': 'hobart',
+    'izumi': 'izumi',
+}
+
 
 def identify_host():
     """Function to determine which host the client is running from."""
+
+    ncar_host = os.environ.get('NCAR_HOST', '').lower()
+    if ncar_host in NCAR_HOSTS:
+        return NCAR_HOSTS[ncar_host]
 
     hostname = socket.getfqdn()
     return next((name for name, regex in regexes if regex.search(hostname)), 'unknown')
