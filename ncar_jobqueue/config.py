@@ -3,9 +3,9 @@ import datetime
 import os
 import pathlib
 import shutil
+from importlib.resources import files
 
 import dask
-from importlib.resources import files
 import yaml
 
 from .util import identify_host
