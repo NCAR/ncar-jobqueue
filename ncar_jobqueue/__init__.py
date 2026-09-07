@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # flake8: noqa
-""" Top-level module for ncar-jobqueue. """
+"""Top-level module for ncar-jobqueue."""
+
 from importlib.metadata import version, PackageNotFoundError
 
 from . import config
